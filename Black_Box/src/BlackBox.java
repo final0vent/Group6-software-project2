@@ -8,17 +8,26 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+import java.util.Arrays;
+import java.util.Random;
 
 public class BlackBox extends JPanel implements BlackBoxConfig
 {
     public Graphics g;
     //public int[][][] coordanites = new int [8][8][8];
 
-    public static void main(String args[])
+    public static void main(String args[])                          //Main function
     {
         BlackBox bb = new BlackBox();
+        Setter set = new Setter();
+        Setter_userSelectAtom setter = new Setter_userSelectAtom();
+
+        set.rand_place();
+        setter.manu_place();
         bb.UI();
     }
+
+
 
     public void UI()
     {
@@ -30,6 +39,9 @@ public class BlackBox extends JPanel implements BlackBoxConfig
 
         jf.setLayout(new BorderLayout());
 
+        /*
+        Double check if the user want to close the program.
+         */
         jf.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -49,9 +61,11 @@ public class BlackBox extends JPanel implements BlackBoxConfig
         this.setBackground(Color.LIGHT_GRAY);
 
         jf.add(this,BorderLayout.CENTER);
+        /*
+        This is the part of the next spirit. We didn't finish it yet.
 
         JPanel jp = new JPanel();
-        jp.setPreferredSize(dim2);                              //This for button
+        jp.setPreferredSize(dim2);
         jp.setBackground(Color.WHITE);
         jf.add(jp,BorderLayout.EAST);
         jp.setLayout(new FlowLayout());
@@ -66,15 +80,23 @@ public class BlackBox extends JPanel implements BlackBoxConfig
             jp.add(button[i]);
         }
 
+         */
+
         jf.setVisible(true);
     }
 
+    /*
+    Function to draw a hexagon with the given midpoint coordinate
+    */
     public void drawHexagon(Graphics g,double x,double y){
         for(int i = 0 ; i < 6 ; i++){
             g.drawLine((int)(x+r*Math.sin(a*i)),(int)(y+r*Math.cos(a*i)),(int)(x+r*Math.sin(a*(i+1))),(int)(y+r*Math.cos(a*(i+1))));
         }
     }
 
+    /*
+     Painting the main black box
+     */
     public void paint(Graphics g)
     {
         double up_x,down_x;

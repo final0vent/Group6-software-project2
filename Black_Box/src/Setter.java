@@ -19,7 +19,7 @@ public class Setter {
         //Print the random coordinate number array
         System.out.println(Arrays.deepToString(coordinate_rand));
     }
-
+    /*
     public void manu_place(){
         int[][] coordinate_manu = new int[6][3];
 
@@ -34,8 +34,10 @@ public class Setter {
         System.out.println(Arrays.deepToString(coordinate_manu));
     }
 
+     */
+
     public static void main(String[] args) {
         Setter setter = new Setter();
-        setter.rand_place();
+        //setter.rand_place();
     }
 }
