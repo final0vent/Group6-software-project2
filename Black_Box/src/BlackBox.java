@@ -1,15 +1,8 @@
 import javax.swing.JFrame;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JButton;
-
-import java.awt.Dimension;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.util.Arrays;
-import java.util.Random;
 
 public class BlackBox extends JPanel implements BlackBoxConfig
 {
@@ -22,18 +15,15 @@ public class BlackBox extends JPanel implements BlackBoxConfig
         Setter set = new Setter();
         Setter_userSelectAtom setter = new Setter_userSelectAtom();
 
-        set.rand_place();
-        setter.manu_place();
+        //set.rand_place();
+        //setter.manu_place();
         bb.UI();
     }
-
-
 
     public void UI()
     {
         JFrame jf = new JFrame();
         jf.setTitle("Black Box");
-        jf.setSize(800,800);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -52,17 +42,20 @@ public class BlackBox extends JPanel implements BlackBoxConfig
             }
         });
 
+        /*
         Dimension dim1 = new Dimension(150, 0);
         Dimension dim3 = new Dimension(550, 0);
-        Dimension dim2 = new Dimension(140,40);
-        Dimension DIM = new Dimension(600,600);
 
-        this.setPreferredSize(DIM);                             //This for main part
+        Dimension DIM = new Dimension(600,600);
+         */
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dim2 = new Dimension(140,40);
+
+        //this.setPreferredSize(DIM);                             //This for main part
+        jf.setSize((int)(size.getWidth()),(int)(size.getHeight()));
         this.setBackground(Color.LIGHT_GRAY);
 
         jf.add(this,BorderLayout.CENTER);
-        /*
-        This is the part of the next spirit. We didn't finish it yet.
 
         JPanel jp = new JPanel();
         jp.setPreferredSize(dim2);
@@ -80,8 +73,54 @@ public class BlackBox extends JPanel implements BlackBoxConfig
             jp.add(button[i]);
         }
 
-         */
 
+
+        final JLabel label = new JLabel();
+        this.add(label);
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getButton() == MouseEvent.BUTTON1){
+                    label.setText("Left click");
+                }
+                else if(e.getButton() == MouseEvent.BUTTON2){
+                    label.setText("Middle click");
+                }
+                else if(e.getButton() == MouseEvent.BUTTON3){
+                    label.setText("Right click");
+                }
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int x = e.getX();
+                int y = e.getY();
+                label.setText("Mouse Coordinates: (" + x + "," + y + " )");
+            }
+        });
+
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);         //Maximize window
         jf.setVisible(true);
     }
 
@@ -127,5 +166,4 @@ public class BlackBox extends JPanel implements BlackBoxConfig
             }
         }
     }
-
 }
