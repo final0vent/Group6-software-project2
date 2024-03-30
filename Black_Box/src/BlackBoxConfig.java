@@ -1,3 +1,7 @@
+/*
+    Define the parameters that used in blackbox
+ */
+
 public interface BlackBoxConfig
 {
     int size = 40, row = 15, column = 15;
@@ -16,6 +20,7 @@ public interface BlackBoxConfig
     int circleRadius = 10;
     double det_Button = r / Math.sqrt(2);
     double ADJ_PARAMS = 1.2;
+    int RayRadius = 30;
 
     //Select_Button
     double sg_detX = (r/2)*ADJ_PARAMS;

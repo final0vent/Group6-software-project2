@@ -19,25 +19,8 @@ public class Setter {
         //Print the random coordinate number array
         System.out.println(Arrays.deepToString(coordinate_rand));
     }
-    /*
-    public void manu_place(){
-        int[][] coordinate_manu = new int[6][3];
-
-        Scanner scanner = new Scanner(System.in);
-        for(int i = 0 ; i < 6 ; i++){
-            for(int j = 0 ; j < 3 ; j++)
-            {
-                coordinate_manu[i][j] = scanner.nextInt();
-            }
-        }
-
-        System.out.println(Arrays.deepToString(coordinate_manu));
-    }
-
-     */
-
     public static void main(String[] args) {
         Setter setter = new Setter();
-        //setter.rand_place();
+        setter.rand_place();
     }
 }

@@ -16,72 +16,72 @@ public class Select_Button implements BlackBoxConfig {
             if(i % 2 != 0){
                 loop1_p +=1;
                 loop1_q -=1;
-                ButtonArr[i][0] = (int)(bbt.getX(loop1_p,loop1_q,4) - sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop1_p,loop1_q,4) - sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop1_p,loop1_q,4) - sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(loop1_p,loop1_q,4) - sg_detY);
             }
             else {
-                ButtonArr[i][0] = (int)(bbt.getX(loop1_p,loop1_q,4) - pl_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop1_p,loop1_q,4) - pl_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop1_p,loop1_q,4) - pl_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(loop1_p,loop1_q,4) - pl_detY);
             }
         }
         for(int i = 10 ; i<= 18 ; i++){
             if(i % 2 == 0){
                 loop2_p +=1;
                 loop2_s -=1;
-                ButtonArr[i][0] = (int)(bbt.getX(loop2_p,-4,loop2_s) - pl_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop2_p,-4,loop2_s) - pl_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop2_p,-4,loop2_s) - pl_detX );
+                ButtonArr[i][1] = (int)(bbt.getY(loop2_p,-4,loop2_s) - pl_detY);
             }
             else {
-                ButtonArr[i][0] = (int)(bbt.getX(loop2_p,-4,loop2_s) - sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop2_p,-4,loop2_s) + sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop2_p,-4,loop2_s) - sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(loop2_p,-4,loop2_s) + sg_detY);
             }
         }
         for(int i = 19 ; i<= 27 ; i++){
             if(i % 2 != 0){
                 loop3_q +=1;
                 loop3_s -=1;
-                ButtonArr[i][0] = (int)(bbt.getX(4,loop3_q,loop3_s) - sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(4,loop3_q,loop3_s) + sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(4,loop3_q,loop3_s) - sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(4,loop3_q,loop3_s) + sg_detY);
             }
             else {
-                ButtonArr[i][0] = (int)(bbt.getX(4,loop3_q,loop3_s) + sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(4,loop3_q,loop3_s) + sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(4,loop3_q,loop3_s) + sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(4,loop3_q,loop3_s) + sg_detY);
             }
         }
         for(int i = 28 ; i<= 36 ; i++){
             if(i % 2 == 0){
                 loop4_p -=1;
                 loop4_q +=1;
-                ButtonArr[i][0] = (int)(bbt.getX(loop4_p,loop4_q,-4) + sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop4_p,loop4_q,-4) + sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop4_p,loop4_q,-4) + sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(loop4_p,loop4_q,-4) + sg_detY);
             }
             else {
-                ButtonArr[i][0] = (int)(bbt.getX(loop4_p,loop4_q,-4) + pl_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop4_p,loop4_q,-4) + pl_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop4_p,loop4_q,-4) + pl_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(loop4_p,loop4_q,-4) + pl_detY);
             }
         }
         for(int i = 37 ; i<= 45 ; i++){
             if(i % 2 == 0){
-                ButtonArr[i][0] = (int)(bbt.getX(loop5_p,4,loop5_s) + sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop5_p,4,loop5_s) - sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop5_p,4,loop5_s) + sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(loop5_p,4,loop5_s) - sg_detY);
             }
             else {
                 loop5_p -=1;
                 loop5_s +=1;
-                ButtonArr[i][0] = (int)(bbt.getX(loop5_p,4,loop5_s) + pl_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(loop5_p,4,loop5_s) + pl_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(loop5_p,4,loop5_s) + pl_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(loop5_p,4,loop5_s) + pl_detY);
             }
         }
         for(int i = 46 ; i<= 54 ; i++){
             if(i % 2 == 0){
                 loop6_q -=1;
                 loop6_s +=1;
-                ButtonArr[i][0] = (int)(bbt.getX(-4,loop6_q,loop6_s) + sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(-4,loop6_q,loop6_s) - sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(-4,loop6_q,loop6_s) + sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(-4,loop6_q,loop6_s) - sg_detY);
             }
             else {
-                ButtonArr[i][0] = (int)(bbt.getX(-4,loop6_q,loop6_s) - sg_detX - circleRadius);
-                ButtonArr[i][1] = (int)(bbt.getY(-4,loop6_q,loop6_s) - sg_detY - circleRadius);
+                ButtonArr[i][0] = (int)(bbt.getX(-4,loop6_q,loop6_s) - sg_detX);
+                ButtonArr[i][1] = (int)(bbt.getY(-4,loop6_q,loop6_s) - sg_detY);
             }
         }
         return ButtonArr;
