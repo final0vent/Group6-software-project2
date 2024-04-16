@@ -20,8 +20,10 @@ public class Main {
         atoms.add(new int[]{0,-2,2});
         atoms.add(new int[]{0,-1,1});
 
-        int[] current=new int[]{0,-4,4};
-        String direction="E";
+        int[] current=new int[]{0,4,-4};
+        String direction="SW";
+        direction=ray.isRayEntrySurrounded(current,atoms,direction);
+        System.out.println(direction);
         while(ray.isNextCoordinateValid(current,direction)){
             List<String> threeDirections=ray.threeDirectionsAhead(direction);
             List<int[]> threeCoordinates=ray.threeCoordinatesAhead(current,threeDirections);
