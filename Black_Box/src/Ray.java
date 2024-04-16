@@ -10,6 +10,46 @@ public class Ray {
     public int getEntryNumber(){
         return entryNumber;
     }
+
+    public String isRayEntrySurrounded(int[] current, List<int[]> atoms, String direction){
+        int[] sideCoordinate1=new int[3];
+        int[] sideCoordinate2=new int[3];
+        boolean oppositeOrNot=false;
+        switch (direction){
+            case"NE":
+                sideCoordinate1 = new int[]{current[0], current[1]-1, current[2]+1};
+                sideCoordinate2 = new int[]{current[0]+1, current[1], current[2]-1};
+                break;
+            case "E":
+                sideCoordinate1 = new int[]{current[0]-1, current[1], current[2]+1};
+                sideCoordinate2 = new int[]{current[0]+1, current[1]-1, current[2]};
+                break;
+            case "SE":
+                sideCoordinate1 = new int[]{current[0]-1, current[1]+1, current[2]};
+                sideCoordinate2 = new int[]{current[0], current[1]-1, current[2]+1};
+                break;
+            case "SW":
+                sideCoordinate1 = new int[]{current[0], current[1]+1, current[2]-1};
+                sideCoordinate2 = new int[]{current[0]-1, current[1], current[2]+1};
+                break;
+            case "W":
+                sideCoordinate1 = new int[]{current[0]+1, current[1], current[2]-1};
+                sideCoordinate2 = new int[]{current[0]-1, current[1]+1, current[2]};
+                break;
+            case "NW":
+                sideCoordinate1 = new int[]{current[0]+1, current[1]-1, current[2]};
+                sideCoordinate2 = new int[]{current[0], current[1]+1, current[2]-1};
+                break;
+        }
+        for(int[] atom:atoms){
+            if (Arrays.equals(sideCoordinate1, atom) || Arrays.equals(sideCoordinate2, atom)) {
+                oppositeOrNot = true;
+                break;
+            }
+        }
+        if(oppositeOrNot) return oppositeDirection(direction);
+        return direction;
+    }
     public int[] getNextCoordinate(int[] current,String direction){
         int[] afterMove=new int[3];
         switch (direction) {
