@@ -18,7 +18,6 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
     public Graphics g;
     private int p=10,q=10,s=10;  //Variables that record the atom place
     private int entry_x,entry_y,entry_num; //Variables that record the x y of the entry.
-    int atomCount = 0;
     private final List<int[]> atoms = new ArrayList<>(6); // Define the arrayList "atoms" to store atoms
     private int[] checkIfWin = new int[7];
     private int[][] guessAtoms = new int[7][3];
@@ -28,14 +27,14 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
     int[] Current = new int[3];
     String Direction = "";
     Result result = new Result();
+    int experimenterTime = 1,setterTime =0;                        //Assume we start the game as player experimenter
+
+    //---------------------------------------------Reset----------------------------------------------------------------
+    int atomCount = 0;
     int Score= 0;
-    int experimenterTime = 1,setterTime = 0;                        //Assume we start the game as player experimenter
 
     public static void main(String[] args)                          //Main function
     {
-        //set.rand_place();
-        //setter.manu_place();
-
         Black_box_test bbt = new Black_box_test();
         bbt.mainBox();
     }
@@ -48,6 +47,8 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
         int[] current = Current;
         String direction = Direction;
         Ray ray = new Ray(4);
+
+        direction=ray.isRayEntrySurrounded(current,atoms,direction);
         while(ray.isNextCoordinateValid(current,direction)){
             List<String> threeDirections=ray.threeDirectionsAhead(direction);
             List<int[]> threeCoordinates=ray.threeCoordinatesAhead(current,threeDirections);
@@ -57,6 +58,7 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
             }
             current=ray.getNextCoordinate(current,direction);
         }
+
         Result result = new Result();
         result.coordinates = current;
         result.Direction = direction;
@@ -69,13 +71,12 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
         /*
         preload atoms inside the box and guessAtoms array, assume you are the experimenter.
          */
-        atoms.add(new int[]{-2,-1,3});
-        atoms.add(new int[]{-1,0,1});
-        atoms.add(new int[]{-1,1,0});
-        atoms.add(new int[]{-1,4,-3});
-        atoms.add(new int[]{0,-2,2});
-        atoms.add(new int[]{0,-1,1});
-        atomCount = 6;
+        Setter setter = new Setter();
+        int[][] randomAtoms = setter.rand_place();
+        for(int i = 0 ; i < 6 ; i++){
+            atoms.add(randomAtoms[i]);
+            atomCount++;
+        }
 
         for(int i = 0 ; i <guessAtoms.length ; i++){
             checkIfWin[i] = 0;
@@ -147,6 +148,15 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
             }
         });
 
+        button[0].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jf.dispose();
+                Black_box_test bbt = new Black_box_test();
+                bbt.mainBox();
+            }
+        });
+
         JLabel text1 = new JLabel("Place Atom: 0");
         Font textFont =new Font(text1.getFont().getName(),Font.PLAIN,20);
         text1.setFont(textFont);
@@ -166,7 +176,7 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
 
         jp.add(Box.createVerticalStrut(40));                    //Add line spacing to justify text.
 
-        JButton finish = new JButton("Finish!");
+        JButton finish = new JButton("Finished!");
         Font buttonFont =new Font(finish.getName(),Font.PLAIN,16);
         finish.setFont(buttonFont);
         finish.addActionListener(new ActionListener() {
@@ -195,16 +205,14 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
                         }
                     }
                 }
-                System.out.println(Arrays.toString(checkIfWin));
-                atoms.forEach(array -> System.out.print(Arrays.toString(array)));
-                System.out.println(" ");
-                System.out.println(Arrays.deepToString(guessAtoms));
+                //atoms.forEach(array -> System.out.print(Arrays.toString(array)));
                 for(int i = 0 ; i<6 ; i++){
                     int[] ATOMS = atoms.get(i);
                     p = ATOMS[0];
                     q = ATOMS[1];
                     s = ATOMS[2];
                     if(checkIfWin[i] != 1){
+                        Score += 4;
                         drawAtom(Color.RED);
                     }
                     else if(checkIfWin[i] == 1){
@@ -263,7 +271,6 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
                             guessArrIndex = i;
                             break;
                         }
-
                     }
                     if(draw_or_eraser && guessArrIndex <= 6){
                         drawAtom(Color.black);
@@ -346,6 +353,7 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
         }
         return 0;
     }
+
     /*
     Using the coordinates to discriminate the entry selected by the user.
      */
@@ -400,7 +408,7 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
                 entry_y = arr[i][1];
                 entry_num = i;
                 System.arraycopy(arr[i], 2, Current, 0, 3);
-                System.out.println(Current[0]+" "+Current[1]+" "+Current[2]);
+                //System.out.println(Current[0]+" "+Current[1]+" "+Current[2]);
                 Direction = buttonDirection[i];
                 return true;
             }
@@ -502,6 +510,9 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
     public void fillEntry(Color color){
         Graphics g = this.getGraphics();
         g.setColor(color);
+        if(entry_x == 0 && entry_y == 0){
+            return;
+        }
         g.fillOval(entry_x-circleRadius,entry_y-circleRadius,2*circleRadius,2*circleRadius);
     }
     /*
@@ -510,6 +521,5 @@ public class Black_box_test extends JPanel implements BlackBoxConfig
     public Color randomColor(){
         Random random = new Random();
         return new Color(random.nextInt(256),random.nextInt(256),random.nextInt(256));
-
     }
 }
