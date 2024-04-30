@@ -20,8 +20,9 @@ public class Main {
         atoms.add(new int[]{0,-2,2});
         atoms.add(new int[]{0,-1,1});
 
-        int[] current=new int[]{0,4,-4};
-        String direction="SW";
+        int[] current=new int[]{4,0,-4};
+        String direction="NE";
+        /*
         direction=ray.isRayEntrySurrounded(current,atoms,direction);
         System.out.println(direction);
         while(ray.isNextCoordinateValid(current,direction)){
@@ -34,5 +35,8 @@ public class Main {
             current=ray.getNextCoordinate(current,direction);
         }
         System.out.println(Arrays.toString(current) +"  +  "+direction);
+
+         */
+        System.out.println(ray.result(atoms,current,direction));
     }
 }

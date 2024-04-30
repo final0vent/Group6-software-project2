@@ -7,6 +7,8 @@ public class Ray {
     public Ray(int n){
         entryNumber=n;
     }
+    public Ray(){
+    }
     public int getEntryNumber(){
         return entryNumber;
     }
@@ -165,6 +167,22 @@ public class Ray {
         if(!atomAhead[0] && !atomAhead[1] && atomAhead[2]) return threeDirection.get(0);
         if(atomAhead[0] && atomAhead[1] && !atomAhead[2]) return oppositeDirection(threeDirection.get(0));
         if(!atomAhead[0] && atomAhead[1] && atomAhead[2]) return oppositeDirection(threeDirection.get(2));
-        return "TERMINATE";
+        return "ABSORBED";
+    }
+
+    public String result(List<int[]> atoms, int[] current, String entryDirection){
+        String direction=isRayEntrySurrounded(current,atoms,entryDirection);
+        if(!entryDirection.equals(direction)) return Arrays.toString(current) +"  +  "+direction;
+        while(true){
+            List<String> threeDirections=threeDirectionsAhead(direction);
+            List<int[]> threeCoordinates=threeCoordinatesAhead(current,threeDirections);
+            direction=nextDirection(threeCoordinates,atoms,direction,threeDirections);
+            if(!isNextCoordinateValid(current,direction)) break;
+            if(direction.equals("ABSORBED")){
+                break;
+            }
+            current=getNextCoordinate(current,direction);
+        }
+        return Arrays.toString(current) +"  +  "+direction;
     }
 }
